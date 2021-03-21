@@ -43,8 +43,13 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        loader: "babel-loader",
         exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",  
+          options: {
+            cacheDirectory: true,
+          }
+        }
       },
       {
         test: /\.css$/i,
