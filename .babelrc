@@ -2,10 +2,10 @@
   "presets": [
     [
       "@babel/preset-env",
+      // 具体参数配置：https://www.babeljs.cn/docs/babel-preset-env#corejs
       {
         "useBuiltIns": "usage",
-        "corejs": 3,
-        "modules": false
+        "corejs": "3.8"
       }
     ],
     "@babel/preset-react"

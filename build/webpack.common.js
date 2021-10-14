@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     clean: true,
-    filename: "[name].[contenthash].js",
+    filename: "[name].[contenthash:5].js",
     // chunkFilename: "[id].[contenthash].js",
     path: path.resolve(__dirname, "../dist"),
     // TODO: 路径问题
@@ -32,7 +32,7 @@ module.exports = {
       template: path.join(__dirname, "../public/index.html"),
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
+      filename: "[name].[contenthash:5].css",
     }),
     new webpack.ProvidePlugin({
       // 添加变量和模块的对应关系，避免每次导入模块
@@ -42,22 +42,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",  
-          options: {
-            cacheDirectory: true,
-          }
-        }
+        use: "babel-loader",
       },
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
       {
         test: /\.less$/i,
-        include: /node_modules/,
+        // antd less 变量支持覆盖
+        include: /node_modules\/antd/,
         use: [
           MiniCssExtractPlugin.loader,
           "css-loader",
@@ -86,6 +82,7 @@ module.exports = {
               },
             },
           },
+          "postcss-loader",
           "less-loader",
         ],
       },
