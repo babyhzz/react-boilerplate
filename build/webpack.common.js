@@ -46,6 +46,7 @@ module.exports = {
         exclude: /node_modules/,
         use: "babel-loader",
       },
+      // CSS文件默认都不做模块化，仅对less文件生效
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
@@ -78,7 +79,8 @@ module.exports = {
             options: {
               modules: {
                 localIdentContext: path.resolve(__dirname, "src"),
-                localIdentName: "[hash:base64]",
+                // name: 文件名，local：class名
+                localIdentName: "[name]__[local]__[hash:base64:5]",
               },
             },
           },
