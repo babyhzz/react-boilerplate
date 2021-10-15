@@ -8,7 +8,7 @@ module.exports = merge(common, {
   devServer: {
     open: true,
     port: 9000,
-    liveReload: true,
+    hot: true,
   },
   plugins: [
     new webpack.DefinePlugin({

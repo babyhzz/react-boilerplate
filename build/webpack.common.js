@@ -25,20 +25,6 @@ module.exports = {
       "@": srcDir,
     },
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: "Production",
-      filename: "index.html",
-      template: path.join(__dirname, "../public/index.html"),
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].[contenthash:5].css",
-    }),
-    new webpack.ProvidePlugin({
-      // 添加变量和模块的对应关系，避免每次导入模块
-      // "$": "jquery"
-    }),
-  ],
   module: {
     rules: [
       {
@@ -103,4 +89,18 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: "Production",
+      filename: "index.html",
+      template: path.join(__dirname, "../public/index.html"),
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].[contenthash:5].css",
+    }),
+    new webpack.ProvidePlugin({
+      // 添加变量和模块的对应关系，避免每次导入模块
+      // "$": "jquery"
+    }),
+  ],
 };

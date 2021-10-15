@@ -5,7 +5,8 @@
       // 具体参数配置：https://www.babeljs.cn/docs/babel-preset-env#corejs
       {
         "useBuiltIns": "usage",
-        "corejs": "3.8"
+        "corejs": "3.8",
+        "modules": false
       }
     ],
     "@babel/preset-react"
