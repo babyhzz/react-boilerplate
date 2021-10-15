@@ -9,5 +9,11 @@ module.exports = merge(common, {
     open: true,
     port: 9000,
     liveReload: true,
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      // 添加DEV环境变量
+      // ENV: JSON.stringify("Production"),
+    })
+  ],
 });

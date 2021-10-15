@@ -1,7 +1,7 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const webpack = require("webpack");
 
 const srcDir = path.resolve(__dirname, "../src");
 const themeVars = require(path.join(srcDir, "styles/themeVars"));
@@ -14,7 +14,7 @@ module.exports = {
   output: {
     clean: true,
     filename: "[name].[contenthash:5].js",
-    // chunkFilename: "[id].[contenthash].js",
+    chunkFilename: "[name].[contenthash:5].js",
     path: path.resolve(__dirname, "../dist"),
     // TODO: 路径问题
     assetModuleFilename: "images/[hash][ext][query]",
