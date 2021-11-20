@@ -1,17 +1,17 @@
 {
   "presets": [
     [
-      "@babel/preset-env",
       // 具体参数配置：https://www.babeljs.cn/docs/babel-preset-env#corejs
+      "@babel/preset-env",
       {
         "useBuiltIns": "usage",
-        "corejs": "3.8",
-        "modules": false
+        "corejs": "3.8"
       }
     ],
     "@babel/preset-react"
   ],
-  // antd
+  // antd 按需加载，虽然官方不推荐，但感觉是最好的方法？
+  // 相关issue: https://github.com/ant-design/ant-design/issues/23988
   "plugins": [
     [
       "import",
