@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const srcDir = path.resolve(__dirname, "../src");
-const themeVars = require(path.join(srcDir, "styles/themeVars"));
+const themeConfig = require(path.join(srcDir, "styles/theme"));
 
 module.exports = {
   target: "web",
@@ -48,7 +48,7 @@ module.exports = {
             loader: "less-loader",
             options: {
               lessOptions: {
-                modifyVars: themeVars,
+                modifyVars: themeConfig,
                 javascriptEnabled: true,
               },
             },
