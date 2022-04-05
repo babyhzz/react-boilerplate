@@ -1,5 +1,5 @@
 const { merge } = require("webpack-merge");
-const common = require("./webpack.base.js");
+const common = require("./webpack.common.js");
 const webpack = require("webpack");
 
 const TerserPlugin = require('terser-webpack-plugin');
@@ -27,9 +27,5 @@ module.exports = merge(common, {
     },
   },
   plugins: [
-    new webpack.DefinePlugin({
-      // 添加PROD环境变量
-      // ENV: JSON.stringify("Production"),
-    })
   ],
 });

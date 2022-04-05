@@ -9,7 +9,7 @@ const themeConfig = require(path.join(srcDir, "styles/theme"));
 module.exports = {
   target: "web",
   entry: {
-    app: "./src/index.js",
+    app: "./src/index.tsx",
   },
   output: {
     clean: true,
@@ -20,7 +20,7 @@ module.exports = {
     assetModuleFilename: "images/[hash][ext][query]",
   },
   resolve: {
-    extensions: [".jsx", ".js", ".json"],
+    extensions: [".tsx", ".ts", ".jsx", ".js", ".json"],
     alias: {
       "@": srcDir,
     },
@@ -74,17 +74,14 @@ module.exports = {
           "less-loader",
         ],
       },
-      {
-        test: /\.svg$/i,
-        type: "asset/inline",
-      },
+      // webpack通过内置asset处理资源类型，不需要url-loader和file-loader
       // webpack5: https://webpack.docschina.org/guides/asset-modules/
       {
-        test: /\.(png|jpg|jpeg|gif)$/i,
-        type: "asset/resource",
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset",
       },
       {
-        test: /\.(woff|woff2|eot|ttf|otf)/i,
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: "asset/resource",
       },
     ],
@@ -101,6 +98,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       // 添加变量和模块的对应关系，避免每次导入模块
       // "$": "jquery"
-    }),
+    })
   ],
 };

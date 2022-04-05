@@ -1,19 +1,16 @@
 const { merge } = require("webpack-merge");
-const common = require("./webpack.base.js");
+const common = require("./webpack.common.js");
 const webpack = require("webpack");
 
+console.log('object', process.env.BUILD_ENV);
 module.exports = merge(common, {
   mode: "development",
-  devtool: "inline-source-map",
+  devtool: "eval-cheap-module-source-map",
   devServer: {
-    open: true,
+    open: false,
     port: 9000,
     hot: true,
   },
   plugins: [
-    new webpack.DefinePlugin({
-      // 添加DEV环境变量
-      // ENV: JSON.stringify("Production"),
-    })
   ],
 });
