@@ -29,8 +29,16 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/,
-        use: "babel-loader",
+        // exclude: /node_modules/,
+        include: srcDir,
+        use: "babel-loader?cacheDirectory=true"
+
+        // use: {
+        //   loader: "babel-loader",
+        //   options: {
+        //     cacheDirectory: true
+        //   }
+        // }
       },
       // CSS文件默认都不做模块化，仅对less文件生效
       {
@@ -87,6 +95,7 @@ module.exports = {
     ],
   },
   plugins: [
+    // 多入口需要多个 HtmlWebpackPlugin
     new HtmlWebpackPlugin({
       title: "Production",
       filename: "index.html",
@@ -98,6 +107,11 @@ module.exports = {
     new webpack.ProvidePlugin({
       // 添加变量和模块的对应关系，避免每次导入模块
       // "$": "jquery"
+    }),
+    // 忽略moment多语言
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/,
     })
   ],
 };

@@ -4,11 +4,11 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "start": "webpack serve --config webpack/webpack.dev.js",
+    "start": "webpack serve --config build/webpack.dev.js",
     "start:dev": "cross-env BUILD_ENV=dev npm run start",
     "start:prod": "cross-env BUILD_ENV=prod npm run start",
-    "build": "webpack --config webpack/webpack.prod.js --progress",
-    "analyze": "webpack --config webpack/webpack.analyze.js"
+    "build": "webpack --config build/webpack.prod.js --progress",
+    "analyze": "webpack --config build/webpack.analyze.js"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "antd": "^4.14.0",
+    "moment": "^2.29.3",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0"
