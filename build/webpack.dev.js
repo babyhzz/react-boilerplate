@@ -7,7 +7,7 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "eval-cheap-module-source-map",
   devServer: {
-    open: false,
+    open: true,
     port: 9000,
     hot: true,
   },
