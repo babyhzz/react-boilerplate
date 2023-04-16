@@ -75,10 +75,22 @@ module.exports = {
 
 
 
-eslint如何识别react语法？安装一下两个插件：
+**eslint 与 react**， 安装一下两个插件：
 
-- [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
-- [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+[eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
+
+- 使用预设，直接extends中加入 "plugin:react/recommended"
+- 如果要自己一个个调，加入插件并加入需要的rules
+
+
+
+[eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+
+同理，直接使用预设："plugin:react-hooks/recommended"
+
+自定义：https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#custom-configuration
+
+
 
 
 
@@ -160,6 +172,33 @@ tsconfig.json
 
 
 ## prettier配置
+
+[官网](https://www.prettier.cn/docs/install.html)
+
+如何更好的和eslint配合工作：[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#installation)
+
+> It turns off all ESLint rules that are unnecessary or might conflict with Prettier. There’s a similar config for Stylelint: [stylelint-config-prettier](https://github.com/prettier/stylelint-config-prettier)
+>
+> Extending `"prettier"` turns off a bunch of core ESLint rules, as well as a few rules from these plugins:
+>
+> - [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint)
+> - [@babel/eslint-plugin](https://github.com/babel/babel/tree/main/eslint/babel-eslint-plugin)
+> - [eslint-plugin-babel](https://github.com/babel/eslint-plugin-babel)
+> - [eslint-plugin-flowtype](https://github.com/gajus/eslint-plugin-flowtype)
+> - [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)
+> - [eslint-plugin-standard](https://github.com/xjamundx/eslint-plugin-standard)
+> - [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
+> - [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue)
+
+注意这里也提到了 [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) 这个插件，应该是一个意思。
+
+
+
+## lint配置
+
+prettier提及的lint配置：[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)
+
+
 
 
 
