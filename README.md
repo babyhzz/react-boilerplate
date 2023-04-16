@@ -1,7 +1,7 @@
 # TODO
 
 - [ ] PostCSS
-- [ ] ESLint
+- [x] ESLint
 - [ ] Antd 主题
 - [ ] DLL 提高编译速度
 - [ ] HMR 原理及集成
@@ -9,15 +9,17 @@
 
 
 
+
+
 # 配置
 
-## 插件
+## ESLint的配置
 
-### eslint-webpack-plugin
+安装webpack插件：[eslint-webpack-plugin](https://www.npmjs.com/package/eslint-webpack-plugin)
 
-3.0版本仅适用于webpack5。
+3.0版本仅适用于webpack5。eslint-loader即将废弃，请使用该插件。
 
-eslint-loader即将废弃，请使用该插件。
+
 
 ```json
 {
@@ -26,24 +28,22 @@ eslint-loader即将废弃，请使用该插件。
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-webpack-plugin": "^4.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
   }
 }
 ```
 
 
 
-eslint是什么：
+[eslint](http://eslint.cn/docs/user-guide/configuring)哪些配置：
 
 - rules：eslint规则
   - [airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base)  js&es6+的一些规范，需要依赖 eslint 和 [eslint-plugin-import](https://www.npmjs.com/package/eslint-plugin-import)（主要是inport/export的语法的lint）
 - formatter：配置展示lint结果的方式
 - plugins: 自定义一些规则，自定义一些配置和环境变量，自定义其他文件如ts的处理器提取js代码
-
-
-
-
-
-
+- environment：指定脚本的运行环境，每种环境有特定的全局变量。
+- globals：执行期间访问的额外的全局变量
 
 
 
@@ -72,6 +72,98 @@ module.exports = {
   root: true,
 };
 ```
+
+
+
+eslint如何识别react语法？安装一下两个插件：
+
+- [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
+- [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
+
+
+
+## babel的配置
+
+不使用ts-loader去编译ts文件，这里使用babel去实现。
+
+[babel vs tsc](https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html)：babel用来编译，tsc用来生成声明文件。（组件库可以这么弄）
+
+
+
+**@babel/preset-env**
+
+允许使用最新的JS语法。不会包含小于stage-3阶段的提案，因为浏览器不会实现。
+
+> 关于新语法的几个阶段：
+>
+> - Strawman（Stage 0，稻草人）
+> - Proposal（Stage 1，提议）
+> - Draft（Stage 2，草案）
+> - Candidate（Stage 3，候选），意味着很大程度能进入标准
+> - Finished（Stage 4，完成）
+
+加上  [`.browserslistrc`](https://github.com/browserslist/browserslist) 文件来指定目标，处理兼容性文件。当前项目的配置在package.json文件中，使用推荐的defaults即可。
+
+```
+  "browserslist": {
+    "production": ["defaults"],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+```
+
+> `defaults`: Browserslist’s default browsers (`> 0.5%, last 2 versions, Firefox ESR, not dead`).
+
+针对 polyfill 的配置是 [useBuiltIns](https://babeljs.io/docs/babel-preset-env#usebuiltins):
+
+- entry: 在入口处手动导入，import "core-js";  将根据环境自动展开导入，导入的会比较多，可以手动指定导入部分
+- usage: 导入使用的部分
+
+```
+    [
+      // 具体参数配置：https://www.babeljs.cn/docs/babel-preset-env#corejs
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage",
+        "corejs": "3.8"
+      }
+    ],
+```
+
+
+
+**@babel/preset-react**
+
+解析react语法 https://babeljs.io/docs/babel-preset-react
+
+
+
+**@babel/preset-typescript**
+
+转义 ts 语法 https://babeljs.io/docs/babel-preset-typescript
+
+
+
+## ts配置
+
+tsconfig.json
+
+```json
+{
+	"noEmit": true,  // 不生成编译后的文件，ts、tsx的编译工作交给 babel 去做
+}
+```
+
+
+
+## prettier配置
+
+
+
+
 
 
 

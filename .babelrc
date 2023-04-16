@@ -8,7 +8,8 @@
         "corejs": "3.8"
       }
     ],
-    "@babel/preset-react"
+    "@babel/preset-react",
+    "@babel/preset-typescript"
   ],
   // antd 按需加载，虽然官方不推荐，但感觉是最好的方法？
   // 相关issue: https://github.com/ant-design/ant-design/issues/23988
