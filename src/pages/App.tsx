@@ -8,6 +8,7 @@ import "@/styles/global.less";
  * ConfigProvider: 设置antd的全局熟悉
  */
 function App() {
+  const a = 1;
   return (
     <ConfigProvider locale={zhCN}>
       <Dashboard />

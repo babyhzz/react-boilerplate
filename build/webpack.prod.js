@@ -1,11 +1,10 @@
 const { merge } = require("webpack-merge");
-const common = require("./webpack.common.js");
-const webpack = require("webpack");
+const base = require("./webpack.base.js");
 
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
-module.exports = merge(common, {
+module.exports = merge(base, {
   mode: "production",
   optimization: {
     minimize: true,

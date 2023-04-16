@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ESLintPlugin = require('eslint-webpack-plugin');
 
 const srcDir = path.resolve(__dirname, "../src");
 const themeConfig = require(path.join(srcDir, "styles/theme"));
@@ -112,6 +113,9 @@ module.exports = {
     new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/,
-    })
+    }),
+    new ESLintPlugin({
+      context: srcDir,
+    }),
   ],
 };
