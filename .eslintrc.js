@@ -11,7 +11,14 @@ module.exports = {
     node: true,
     browser: true,
   },
-
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [["@", "./src"]],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      },
+    },
+  },
   globals: {},
   parserOptions: {},
   parser: "@typescript-eslint/parser",

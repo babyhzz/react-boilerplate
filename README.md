@@ -92,6 +92,21 @@ module.exports = {
 
 
 
+eslint不能识别@符号，需要安装 [eslint-import-resolver-alias](https://www.npmjs.com/package/eslint-import-resolver-alias) 插件，并进行配置
+
+```
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [["@", "./src"]],
+        extensions: [".ts", ".tsx", ".js", ".jsx", ".json"],
+      },
+    },
+  },
+```
+
+
+
 
 
 ## babel的配置
