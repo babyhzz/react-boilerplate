@@ -2,6 +2,7 @@
 
 - [ ] PostCSS
 - [x] ESLint
+- [ ] StyleLint
 - [ ] Antd 主题
 - [ ] DLL 提高编译速度
 - [ ] HMR 原理及集成
@@ -205,7 +206,13 @@ tsconfig.json
 > - [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
 > - [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue)
 
-注意这里也提到了 [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) 这个插件，应该是一个意思。
+
+
+如果需要以eslint的方式报出格式的问题，需要安装  [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) 这个插件，把prettier的规则作为eslint的rule。
+
+> - [prettier-eslint](https://github.com/prettier/prettier-eslint)的作用？
+
+
 
 
 

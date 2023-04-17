@@ -22,7 +22,7 @@ module.exports = {
   globals: {},
   parserOptions: {},
   parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
+  plugins: ["@typescript-eslint", "prettier"],
   rules: {
     "import/extensions": [
       "error",
@@ -35,5 +35,6 @@ module.exports = {
         json: "never",
       },
     ],
+    "prettier/prettier": "error",
   },
 };
