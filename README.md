@@ -189,6 +189,11 @@ tsconfig.json
 
 ## prettier配置
 
+- eslint-config-prettier 关闭冲突的 eslint 配置
+- eslint-plugin-prettier 以eslint的方式检测 prettier 的错误
+
+
+
 [官网](https://www.prettier.cn/docs/install.html)
 
 如何更好的和eslint配合工作：[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#installation)
@@ -216,11 +221,11 @@ tsconfig.json
 
 
 
-## lint配置
+## stylelint配置
 
-prettier提及的lint配置：[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)
-
-
+```
+npm init stylelint
+```
 
 
 
