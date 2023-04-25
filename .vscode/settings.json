@@ -1,5 +1,8 @@
 {
   "cSpell.words": [
     "corejs"
-  ]
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  }
 }

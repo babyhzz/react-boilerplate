@@ -1,1 +1,12 @@
-{ "extends": ["stylelint-config-standard"] }
+{
+  "customSyntax": "postcss-less",
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  }
+}

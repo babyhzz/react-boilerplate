@@ -227,9 +227,39 @@ tsconfig.json
 npm init stylelint
 ```
 
+使用该命令会自动生成 .stylelintrc.json 配置文件。
 
+由于 stylelint 不认识 less 语法，需要安装 postcss-less
 
+```
+yarn add postcss-less -D
+```
 
+并配置：
+
+```
+"customSyntax": "postcss-less",
+```
+
+最后 stylelint 不能识别 global，需要将添加了 rules，最终完整的配置：
+
+```json
+{
+  "customSyntax": "postcss-less",
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  }
+}
+
+```
+
+> 这里可以配置 vscode 的代码保存自动修复
 
 
 
