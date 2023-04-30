@@ -11,16 +11,4 @@
     "@babel/preset-react",
     "@babel/preset-typescript"
   ],
-  // antd 按需加载，虽然官方不推荐，但感觉是最好的方法？
-  // 相关issue: https://github.com/ant-design/ant-design/issues/23988
-  "plugins": [
-    [
-      "import",
-      {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": true
-      }
-    ]
-  ]
 }

@@ -261,6 +261,27 @@ yarn add postcss-less -D
 
 > 这里可以配置 vscode 的代码保存自动修复
 
+## PostCSS的配置
+
+使用 `postcss-preset-env` 插件，这个插件包含一些内容：
+
+- polyfill？
+- 使用新语法
+- Autoprefixer
+- 。。。？
+
+待理解
+
+
+
+# Antd
+
+:where :is  的作用及其区别：
+
+https://www.dongchuanmin.com/xhtml/2463.html
+
+`:where()` 和 `:is()` 的不同之处在于，`:where()` 的优先级**总是为 0** ，但是 `:is()` 的优先级是由它的选择器列表中优先级最高的选择器决定的。
+
 
 
 # 参考：
