@@ -52,9 +52,6 @@ module.exports = {
             options: {
               modules: {
                 mode: (resourcePath) => {
-                  // if (/pure.css$/i.test(resourcePath)) {
-                  //   return "pure";
-                  // }
                   if (/global.less$/i.test(resourcePath)) {
                     return "global";
                   }
