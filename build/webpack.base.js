@@ -33,46 +33,33 @@ module.exports = {
         // exclude: /node_modules/,
         include: srcDir,
         use: ["babel-loader"],
-
-        // use: {
-        //   loader: "babel-loader",
-        //   options: {
-        //     cacheDirectory: true
-        //   }
-        // }
       },
-      // CSS文件默认都不做模块化，仅对less文件生效
+      // node_modules导入的css处理解析器
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+        include: /node_modules/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
-      // {
-      //   test: /\.less$/i,
-      //   // antd less 变量支持覆盖
-      //   include: /node_modules\/antd/,
-      //   use: [
-      //     MiniCssExtractPlugin.loader,
-      //     'css-loader',
-      //     {
-      //       loader: 'less-loader',
-      //       options: {
-      //         lessOptions: {
-      //           modifyVars: themeConfig,
-      //           javascriptEnabled: true,
-      //         },
-      //       },
-      //     },
-      //   ],
-      // },
+      // 自己的样式文件加载器
       {
-        test: /\.less$/i,
+        test: /\.(less|css)$/i,
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
+            // https://webpack.docschina.org/loaders/css-loader/#root
             loader: "css-loader",
             options: {
               modules: {
+                mode: (resourcePath) => {
+                  // if (/pure.css$/i.test(resourcePath)) {
+                  //   return "pure";
+                  // }
+                  if (/global.less$/i.test(resourcePath)) {
+                    return "global";
+                  }
+                  return "local";
+                },
                 localIdentContext: path.resolve(__dirname, "src"),
                 // name: 文件名，local：class名
                 localIdentName: "[name]__[local]__[hash:base64:5]",

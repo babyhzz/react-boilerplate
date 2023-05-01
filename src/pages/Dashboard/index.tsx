@@ -14,7 +14,7 @@ function Dashboard() {
             title: "This is a notification message",
             content: (
               <div>
-                <p>some messages...some messages...</p>
+                <p className="test">some messages...some messages...</p>
                 <p>some messages...some messages...</p>
               </div>
             ),
