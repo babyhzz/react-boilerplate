@@ -35,6 +35,7 @@ module.exports = {
         json: "never",
       },
     ],
+    "react/prop-types": "off",
     "prettier/prettier": "error",
   },
 };

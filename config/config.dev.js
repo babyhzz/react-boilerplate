@@ -1,3 +1,3 @@
 export default {
-  BASE_URL: 'https://api.test-dev.com'
-}
+  BASE_URL: "https://api.test-dev.com",
+};

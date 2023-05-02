@@ -8,6 +8,7 @@ module.exports = merge(base, {
     open: true,
     port: 9000,
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [],
 });
