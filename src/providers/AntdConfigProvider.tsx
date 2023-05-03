@@ -12,7 +12,12 @@ type AntdConfigProviderProps = PropsWithChildren;
 const AntdConfigProvider: React.FC<AntdConfigProviderProps> = ({
   children,
 }) => (
-  <ConfigProvider locale={zhCN}>
+  <ConfigProvider
+    locale={zhCN}
+    theme={{
+      token: {},
+    }}
+  >
     <App>{children}</App>
   </ConfigProvider>
 );

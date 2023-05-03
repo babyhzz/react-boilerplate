@@ -16,6 +16,7 @@ module.exports = {
     clean: true,
     filename: "[name].[contenthash:5].js",
     chunkFilename: "[name].[contenthash:5].js",
+    publicPath: "/",
     path: path.resolve(__dirname, "../dist"),
     // TODO: 路径问题
     assetModuleFilename: "images/[hash][ext][query]",
