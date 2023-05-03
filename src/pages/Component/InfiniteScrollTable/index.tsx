@@ -1,5 +1,5 @@
 import { useInfiniteScroll } from "ahooks";
-import { Table, TableProps } from "antd";
+import { Alert, Table, TableProps } from "antd";
 import React from "react";
 import service, { DataType } from "./service";
 
@@ -38,6 +38,10 @@ const InfiniteScrollTable: React.FC = () => {
 
   return (
     <div className="page-container">
+      <Alert
+        message="使用 ahooks 中的 useInfiniteScroll 对表格的 ant-table-body 进行监听，从而达到滚动加载目的"
+        style={{ marginBottom: 20 }}
+      />
       <Table
         rowKey="phone"
         columns={columns}
