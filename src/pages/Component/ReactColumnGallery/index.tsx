@@ -25,7 +25,11 @@ const getPhotos = (count: number): Photo[] => {
 const ReactColumnGallery: React.FC = () => {
   const photos = getPhotos(100);
 
-  return <ColumnGallery photos={photos} />;
+  return (
+    <div className="page-container">
+      <ColumnGallery photos={photos} spacing={8} />
+    </div>
+  );
 };
 
 export default ReactColumnGallery;

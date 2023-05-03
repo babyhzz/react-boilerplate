@@ -27,7 +27,7 @@ export function getRandomImage() {
 export function getAvatars(count: number) {
   const urls: string[] = [];
 
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < count; i += 1) {
     urls.push(`https://picsum.photos/24/24?id=${i}`);
   }
 
