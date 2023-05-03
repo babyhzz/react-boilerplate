@@ -272,6 +272,12 @@ yarn add postcss-less -D
 
 待理解
 
+# Vercel的部署
+
+由于我们的静态网站并且使用的history mode的路由，需要做一些路由配置：
+
+[vercel配置文件](https://vercel.com/docs/concepts/projects/project-configuration#project-configuration/rewrites)
+
 
 
 # Antd
