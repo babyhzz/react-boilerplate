@@ -94,11 +94,6 @@ module.exports = {
       // 添加变量和模块的对应关系，避免每次导入模块
       // "$": "jquery"
     }),
-    // 忽略moment多语言
-    new webpack.IgnorePlugin({
-      resourceRegExp: /^\.\/locale$/,
-      contextRegExp: /moment$/,
-    }),
     new ESLintPlugin({
       files: "src",
     }),

@@ -1,29 +1,20 @@
 # TODO
 
 - [ ] Antd 动态主题
+
 - [ ] 正则表达式工具
+
 - [ ] react router和menu配置统一
+
+- [ ] 文档编写
+
+  
 
 # 配置
 
-## ESLint 的配置
+## ESLint 
 
-安装 webpack 插件：[eslint-webpack-plugin](https://www.npmjs.com/package/eslint-webpack-plugin)
-
-3.0 版本仅适用于 webpack5。eslint-loader 即将废弃，请使用该插件。
-
-```json
-{
-  "devDependencies": {
-    "eslint": "^8.38.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-webpack-plugin": "^4.0.1",
-    "@typescript-eslint/eslint-plugin": "^5.58.0",
-    "@typescript-eslint/parser": "^5.58.0"
-  }
-}
-```
+### ESLint 简介
 
 [eslint](http://eslint.cn/docs/user-guide/configuring)哪些配置：
 
@@ -34,19 +25,29 @@
 - environment：指定脚本的运行环境，每种环境有特定的全局变量。
 - globals：执行期间访问的额外的全局变量
 
-eslint 的默认解析器不能解析 ts 的语法，为了在 ts 中使用 eslint，需要使用 [typescript-lint](https://typescript-eslint.io/) 工具
+### ESLint 配置
 
-> `typescript-eslint`:
->
-> - allows ESLint to parse TypeScript syntax
-> - creates a set of tools for ESLint rules to be able to use TypeScript's type information
-> - provides a large list of lint rules that are specific to TypeScript and/or use that type information
+**[eslint-webpack-plugin](https://www.npmjs.com/package/eslint-webpack-plugin)**
 
-```
+该插件主要是配合webpack使用 eslint 找到 JS 代码的问题，并且进行修复。3.0版本仅适用于 webpack5。
+
+> eslint-loader 即将废弃，请使用该插件。
+
+**[typescript-lint](https://typescript-eslint.io/)** 
+
+eslint 的默认解析器不能解析 ts 的语法，为了在 ts 中使用 eslint，需要使用 [typescript-lint](https://typescript-eslint.io/) 工具。
+
+主要功能如下：
+
+- allows ESLint to parse TypeScript syntax
+- creates a set of tools for ESLint rules to be able to use TypeScript's type information
+- provides a large list of lint rules that are specific to TypeScript and/or use that type information
+
+主要依赖这两个库：@typescript-eslint/parser 和 @typescript-eslint/eslint-plugin
+
+```shell
 yarn add --dev @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint typescript
 ```
-
-参考配置：https://typescript-eslint.io/getting-started
 
 ```js
 module.exports = {
@@ -60,22 +61,29 @@ module.exports = {
 };
 ```
 
-**eslint 与 react**， 安装一下两个插件：
+该插件更多的使用详情查看[官网](https://typescript-eslint.io/getting-started)。
 
-[eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react)
+**[eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) 和 [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)**
 
-- 使用预设，直接 extends 中加入 "plugin:react/recommended"
-- 如果要自己一个个调，加入插件并加入需要的 rules
+若要 ESLint 和 React 一起使用，则需要使用这两个插件。在 extends 中加入这两个插件的预设。
 
-[eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks)
-
-同理，直接使用预设："plugin:react-hooks/recommended"
-
-自定义：https://github.com/facebook/react/tree/main/packages/eslint-plugin-react-hooks#custom-configuration
-
-eslint 不能识别@符号，需要安装 [eslint-import-resolver-alias](https://www.npmjs.com/package/eslint-import-resolver-alias) 插件，并进行配置
-
+```js
+module.exports = {
+  extends: [
+    // ...
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+		// ...
+  ],
+}
 ```
+
+ **[eslint-import-resolver-alias](https://www.npmjs.com/package/eslint-import-resolver-alias)** 
+
+eslint 不能识别@符号，需要安装 [eslint-import-resolver-alias](https://www.npmjs.com/package/eslint-import-resolver-alias) 插件，并进行配置。
+
+```json
+module.exports = {
   settings: {
     "import/resolver": {
       alias: {
@@ -84,9 +92,10 @@ eslint 不能识别@符号，需要安装 [eslint-import-resolver-alias](https:/
       },
     },
   },
+}
 ```
 
-## babel 的配置
+## babel
 
 不使用 ts-loader 去编译 ts 文件，这里使用 babel 去实现。
 
@@ -229,21 +238,37 @@ yarn add postcss-less -D
 
 待理解
 
-# Vercel 的部署
 
-由于我们的静态网站并且使用的 history mode 的路由，需要做一些路由配置：
 
-[vercel 配置文件](https://vercel.com/docs/concepts/projects/project-configuration#project-configuration/rewrites)
+# 问题记录
 
-# Antd
+**1. dev模式下非根路由404**
 
-:where :is 的作用及其区别：
+由于是 history 路由模式，因此需要对 devServer 做 fallback 配置：
 
-https://www.dongchuanmin.com/xhtml/2463.html
+ ```json
+ devServer: {
+ 	historyApiFallback: true,
+ }
+ ```
 
-`:where()` 和 `:is()` 的不同之处在于，`:where()` 的优先级**总是为 0** ，但是 `:is()` 的优先级是由它的选择器列表中优先级最高的选择器决定的。
+配置后没有 404，但是发现 js 和 css 资源找不到，需要配置 publicPath 属性，默认是相对路径，这里配置成绝对路径：
 
-# 参考：
+```json
+output: {
+	publicPath: "/"
+}
+```
+
+**2. Vercel 的部署**
+
+由于我们的静态网站并且使用的 history mode 的路由，则需要做一些路由配置，vercel中的配置是通过其规定的json文件来完成的：[vercel 配置文件](https://vercel.com/docs/concepts/projects/project-configuration#project-configuration/rewrites)
+
+**3. Antd :where :is 的作用及其区别**
+
+`:where()` 和 `:is()` 的不同之处在于，`:where()` 的优先级**总是为 0** ，但是 `:is()` 的优先级是由它的选择器列表中优先级最高的选择器决定的。参考[这篇文章](https://www.dongchuanmin.com/xhtml/2463.html)。
+
+
 
 # 规范
 
