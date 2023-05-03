@@ -11,7 +11,7 @@ function Dashboard() {
         type="primary"
         onClick={() => {
           Modal.info({
-            title: "This is a notification message",
+            title: "This is a notification message!!",
             content: (
               <div>
                 <p className="test">some messages...some messages...</p>
