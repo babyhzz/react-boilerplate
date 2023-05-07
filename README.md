@@ -78,7 +78,7 @@ module.exports = {
 }
 ```
 
- **[eslint-import-resolver-alias](https://www.npmjs.com/package/eslint-import-resolver-alias)** 
+**[eslint-import-resolver-alias](https://www.npmjs.com/package/eslint-import-resolver-alias)** 
 
 eslint 不能识别@符号，需要安装 [eslint-import-resolver-alias](https://www.npmjs.com/package/eslint-import-resolver-alias) 插件，并进行配置。
 
@@ -95,13 +95,29 @@ module.exports = {
 }
 ```
 
-## babel
+**[eslint-config-airbnb-base](https://www.npmjs.com/package/eslint-config-airbnb-base)**
 
-不使用 ts-loader 去编译 ts 文件，这里使用 babel 去实现。
+ js 代码的一些 rules 配置，用来规范代码。
 
-[babel vs tsc](https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html)：babel 用来编译，tsc 用来生成声明文件。（组件库可以这么弄）
 
-**@babel/preset-env**
+
+## Babel
+
+这里不使用 `ts-loader` 去编译 ts 文件，这里使用 babel 去实现。这里要求 tsconfig.json 中  `"isolatedModules": true`。
+
+[Using Babel with TypeScript](https://www.typescriptlang.org/docs/handbook/babel-with-typescript.html)
+
+> This technique is a hybrid approach, using Babel’s [preset-typescript](https://babeljs.io/docs/en/babel-preset-typescript) to generate your JS files, and then using TypeScript to do type checking and `.d.ts` file generation.
+
+[**@babel/preset-typescript**](https://babeljs.io/docs/babel-preset-typescript)
+
+主要包含 [@babel/plugin-transform-typescript](https://babeljs.io/docs/babel-plugin-transform-typescript) 插件，用于转换 ts 代码
+
+[**@babel/preset-react**](https://babeljs.io/docs/babel-preset-react)
+
+React语法的转换预设
+
+[**@babel/preset-env**](https://babeljs.io/docs/babel-preset-env)
 
 允许使用最新的 JS 语法。不会包含小于 stage-3 阶段的提案，因为浏览器不会实现。
 
@@ -113,7 +129,7 @@ module.exports = {
 > - Candidate（Stage 3，候选），意味着很大程度能进入标准
 > - Finished（Stage 4，完成）
 
-加上 [`.browserslistrc`](https://github.com/browserslist/browserslist) 文件来指定目标，处理兼容性文件。当前项目的配置在 package.json 文件中，使用推荐的 defaults 即可。
+加上 [`.browserslistrc`](https://github.com/browserslist/browserslist) 文件来指定目标，处理兼容性文件。当前项目直接配置在 package.json 中，使用推荐的 defaults 即可。
 
 ```
   "browserslist": {
@@ -128,41 +144,38 @@ module.exports = {
 
 > `defaults`: Browserslist’s default browsers (`> 0.5%, last 2 versions, Firefox ESR, not dead`).
 
-针对 polyfill 的配置是 [useBuiltIns](https://babeljs.io/docs/babel-preset-env#usebuiltins):
+针对 polyfill 的配置是 [useBuiltIns](https://babeljs.io/docs/babel-preset-env#usebuiltins): 
 
-- entry: 在入口处手动导入，import "core-js"; 将根据环境自动展开导入，导入的会比较多，可以手动指定导入部分
+- entry: 在入口处手动导入，`import "core-js";` 将根据环境兼容性进行全量导入
 - usage: 导入使用的部分
 
-```
-    [
-      // 具体参数配置：https://www.babeljs.cn/docs/babel-preset-env#corejs
-      "@babel/preset-env",
-      {
-        "useBuiltIns": "usage",
-        "corejs": "3.8"
-      }
-    ],
-```
-
-**@babel/preset-react**
-
-解析 react 语法 https://babeljs.io/docs/babel-preset-react
-
-**@babel/preset-typescript**
-
-转义 ts 语法 https://babeljs.io/docs/babel-preset-typescript
-
-## ts 配置
-
-tsconfig.json
-
 ```json
-{
-  "noEmit": true // 不生成编译后的文件，ts、tsx的编译工作交给 babel 去做
-}
+[
+  "@babel/preset-env",
+  {
+    "useBuiltIns": "usage",
+    "corejs": "3.8"
+  }
+],
 ```
 
-## prettier 配置
+
+
+## tsconfig.json
+
+- target & module：ESNext  // 由于我们使用 babel 来编译 ts 故 targe 和 module 都使用最新的 ESNext。
+
+- jsx：preserve // 由于使用babel来编译TS，对于jsx的代码保留即可
+
+- noEmit: true // 不需要输出任何文件
+
+- strict: true  // 严格模式
+
+- moduleResolution:  "node" // 使用 node 的模块寻找策略 
+
+  
+
+## Prettier
 
 - eslint-config-prettier 关闭冲突的 eslint 配置
 - eslint-plugin-prettier 以 eslint 的方式检测 prettier 的错误

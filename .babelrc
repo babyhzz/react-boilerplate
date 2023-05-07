@@ -1,7 +1,6 @@
 {
   "presets": [
     [
-      // 具体参数配置：https://www.babeljs.cn/docs/babel-preset-env#corejs
       "@babel/preset-env",
       {
         "useBuiltIns": "usage",
