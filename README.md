@@ -239,7 +239,7 @@ yarn add postcss-less -D
 - polyfill？
 - 使用新语法
 - Autoprefixer
-- 。。。？
+- ...？
 
 待理解
 
@@ -251,7 +251,7 @@ yarn add postcss-less -D
 
 ```
 devServer: {
-	historyApiFallback: true,
+  historyApiFallback: true,
 }
 ```
 
