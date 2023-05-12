@@ -166,6 +166,8 @@ React 语法的转换预设
 
 - moduleResolution: "node" // 使用 node 的模块寻找策略
 
+- allowSyntheticDefaultImports：不然 `import React from 'react'` 会报类型错
+
 ## Prettier
 
 **[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#readme)**
@@ -246,7 +248,7 @@ yarn add postcss-less -D
 
 由于是 history 路由模式，因此需要对 devServer 做 fallback 配置：
 
-```
+```js
 devServer: {
   historyApiFallback: true,
 }
