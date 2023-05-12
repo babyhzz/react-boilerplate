@@ -2,7 +2,7 @@
   "cSpell.words": [
     "corejs"
   ],
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
-  }
+  // "editor.codeActionsOnSave": {
+  //   "source.fixAll": true
+  // }
 }

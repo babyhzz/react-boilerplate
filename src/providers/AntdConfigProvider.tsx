@@ -9,9 +9,7 @@ dayjs.locale("zh-cn");
 
 type AntdConfigProviderProps = PropsWithChildren;
 
-const AntdConfigProvider: React.FC<AntdConfigProviderProps> = ({
-  children,
-}) => (
+const AntdConfigProvider: React.FC<AntdConfigProviderProps> = ({ children }) => (
   <ConfigProvider
     locale={zhCN}
     theme={{

@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Breadcrumb, Layout, Menu } from "antd";
-import type { MenuProps } from "antd";
-import { Outlet, useLocation, useMatches } from "react-router-dom";
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from "@ant-design/icons";
+import { Layout, Menu } from "antd";
+import React from "react";
+import { Outlet, useMatches } from "react-router-dom";
 import styles from "./index.less";
-import { headerMenuItems, getSideMenuItems } from "./menu";
+import { getSideMenuItems, headerMenuItems } from "./menu";
 
 const { Header, Content, Sider } = Layout;
 

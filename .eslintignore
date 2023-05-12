@@ -3,3 +3,5 @@ build/
 
 # 忽略 config 目录
 config/
+
+.eslintcache

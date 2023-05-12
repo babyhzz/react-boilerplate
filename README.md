@@ -1,12 +1,11 @@
 # TODO
 
 - [ ] Antd 动态主题
-
 - [ ] 正则表达式工具
-
 - [ ] react router 和 menu 配置统一
-
 - [ ] 文档编写
+- [ ] hooks依赖是否生效
+- [ ] lint-staged
 
 # 配置
 
@@ -169,29 +168,27 @@ React 语法的转换预设
 
 ## Prettier
 
-- eslint-config-prettier 关闭冲突的 eslint 配置
-- eslint-plugin-prettier 以 eslint 的方式检测 prettier 的错误
+**[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#readme)**
 
-[官网](https://www.prettier.cn/docs/install.html)
+仅关闭和 Prettier 冲突的 ESLint rules，注意一定要放在 ESLint 配置文件中 extends 属性配置的最后。
 
-如何更好的和 eslint 配合工作：[eslint-config-prettier](https://github.com/prettier/eslint-config-prettier#installation)
+由于关闭后无法检测这些规则，因此我们需要第二个插件
 
-> It turns off all ESLint rules that are unnecessary or might conflict with Prettier. There’s a similar config for Stylelint: [stylelint-config-prettier](https://github.com/prettier/stylelint-config-prettier)
->
-> Extending `"prettier"` turns off a bunch of core ESLint rules, as well as a few rules from these plugins:
->
-> - [@typescript-eslint/eslint-plugin](https://github.com/typescript-eslint/typescript-eslint)
-> - [@babel/eslint-plugin](https://github.com/babel/babel/tree/main/eslint/babel-eslint-plugin)
-> - [eslint-plugin-babel](https://github.com/babel/eslint-plugin-babel)
-> - [eslint-plugin-flowtype](https://github.com/gajus/eslint-plugin-flowtype)
-> - [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)
-> - [eslint-plugin-standard](https://github.com/xjamundx/eslint-plugin-standard)
-> - [eslint-plugin-unicorn](https://github.com/sindresorhus/eslint-plugin-unicorn)
-> - [eslint-plugin-vue](https://github.com/vuejs/eslint-plugin-vue)
 
-如果需要以 eslint 的方式报出格式的问题，需要安装 [eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier) 这个插件，把 prettier 的规则作为 eslint 的 rule。
 
-> - [prettier-eslint](https://github.com/prettier/prettier-eslint)的作用？
+**[eslint-plugin-prettier](https://github.com/prettier/eslint-plugin-prettier)**
+
+将 Prettier 的规则作为 ESLint 的 rule 进行检测，并且给出提示。
+
+```js
+  plugins: [..., "prettier"],
+  rules: {
+    ...,
+    "prettier/prettier": "error",
+  },
+```
+
+> 题外：[prettier-eslint](https://github.com/prettier/prettier-eslint) 的作用？
 
 ## stylelint 配置
 
@@ -199,7 +196,7 @@ React 语法的转换预设
 npm init stylelint
 ```
 
-使用该命令会自动生成 .stylelintrc.json 配置文件。
+使用该命令会自动生成 `.stylelintrc.json` 配置文件。
 
 由于 stylelint 不认识 less 语法，需要安装 postcss-less
 

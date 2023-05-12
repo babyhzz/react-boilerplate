@@ -12,6 +12,9 @@ module.exports = {
     browser: true,
   },
   settings: {
+    react: {
+      version: "detect",
+    },
     "import/resolver": {
       alias: {
         map: [["@", "./src"]],
@@ -38,5 +41,6 @@ module.exports = {
     "react/prop-types": "off",
     "prettier/prettier": "error",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-empty-function": "warn",
   },
 };
